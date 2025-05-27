@@ -1,0 +1,54 @@
+.bonus-system {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  background-color: var(--card-background);
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  margin-top: 20px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: var(--text-color);
+  }
+
+  .bonuses,
+  .anti-bonuses {
+    padding: 15px;
+    background-color: rgba(var(--primary-color), 0.1);
+    border-radius: 5px;
+    min-height: 150px;
+
+    .bonus-item,
+    .anti-bonus-item {
+      padding: 10px;
+      margin: 5px 0;
+      background-color: var(--card-background);
+      border-radius: 5px;
+      box-shadow: var(--card-shadow);
+      color: var(--text-color);
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .anti-bonus-item {
+      color: #e74c3c;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .bonus-system {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+
+    .bonuses,
+    .anti-bonuses {
+      min-height: 100px;
+    }
+  }
+} 

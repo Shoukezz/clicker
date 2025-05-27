@@ -1,0 +1,255 @@
+// Variables
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #2c3e50;
+  --background-color: #f5f6fa;
+  --text-color: #2c3e50;
+  --button-hover: #357abd;
+  --disabled-color: #95a5a6;
+  --card-background: white;
+  --card-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --card-text: #2c3e50;
+  --million-button-color: #27ae60;
+  --million-button-hover: #219a52;
+}
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin button-style {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--button-hover);
+  }
+
+  &:disabled {
+    background-color: var(--disabled-color);
+    cursor: not-allowed;
+  }
+}
+
+// Global styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Game container
+.game-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// Header
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--card-background);
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+
+  .resources {
+    display: flex;
+    gap: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--text-color);
+  }
+
+  .prestige-button {
+    @include button-style;
+    background-color: var(--secondary-color);
+  }
+}
+
+// Main game area
+.game-main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  background-color: var(--card-background);
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  transition: background-color 0.3s ease;
+  color: var(--text-color);
+
+  .click-button {
+    grid-column: 1 / -1;
+    @include button-style;
+    font-size: 2em;
+    padding: 30px;
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.3s ease;
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+// Upgrades section
+.upgrades {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+
+  h2 {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--text-color);
+  }
+
+  .upgrade-button {
+    @include button-style;
+    width: 100%;
+    text-align: left;
+    padding: 15px;
+  }
+}
+
+// Bonuses and Anti-bonuses
+.bonuses,
+.anti-bonuses {
+  padding: 15px;
+  background-color: rgba(var(--primary-color), 0.1);
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+
+  h2 {
+    margin-bottom: 10px;
+    text-align: center;
+    color: var(--text-color);
+  }
+
+  .bonus-item,
+  .anti-bonus-item {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: var(--card-background);
+    border-radius: 5px;
+    box-shadow: var(--card-shadow);
+    transition: background-color 0.3s ease;
+    color: var(--text-color);
+  }
+}
+
+// Skin system
+.skin-system {
+  h2, h3, p {
+    color: var(--text-color);
+  }
+}
+
+// Achievement system
+.achievement-system {
+  h2, h3, p {
+    color: var(--text-color);
+  }
+}
+
+// Sound settings
+.sound-settings {
+  h2, span {
+    color: var(--text-color);
+  }
+}
+
+// Million credits button
+.million-button {
+  @include button-style;
+  background-color: var(--million-button-color);
+  font-size: 1.2em;
+  padding: 15px 30px;
+  margin: 10px auto;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--million-button-hover);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .game-container {
+    padding: 10px;
+  }
+
+  .game-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .game-main {
+    grid-template-columns: 1fr;
+  }
+
+  .click-button {
+    width: 150px !important;
+    height: 150px !important;
+    font-size: 1.5em !important;
+  }
+}
+
+// Animations
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.click-button:hover {
+  animation: pulse 1s infinite;
+} 
